@@ -1,0 +1,178 @@
+{% extends 'base.html' %} {% block title %} Add Product {% endblock title %}
+{%block navbar-content %}
+<i class="fas fa-plus">&nbsp;&nbsp; Add product</i>
+{% endblock navbar-content %} {% block content %}
+<br />
+<br />
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <div
+        class="card card-body {% block card-color %} border-dark text-light bg-secondary {% endblock card-color %}"
+      >
+        <span class="text-center">
+          {% block card-title %} ENTER PRODUCT BELLOW {% endblock card-title %}
+        </span>
+      </div>
+      <form
+        {%
+        block
+        action
+        %}
+        action="/add_product"
+        {%
+        endblock
+        action
+        %}
+        method="POST"
+        enctype="multipart/form-data"
+        autocomplete="off"
+        class="card border-dark mt-3 p-3"
+      >
+        {% csrf_token %} {% block value_id %} {% endblock value_id %}
+        <div class="input-group mb-3">
+          <span class="slide-label btn border-secondary bg-light">
+            <i class="fas fa-tshirt"></i>
+          </span>
+          <input
+            type="text"
+            name="product"
+            placeholder="Product name"
+            maxlength="40"
+            class="form-control"
+            required
+            {%
+            block
+            value_product
+            %}
+            {%
+            endblock
+            value_product
+            %}
+          />
+        </div>
+        <div class="input-group mb-3">
+          <span class="slide-label btn border-secondary bg-light">
+            <i class="fas fa-dollar-sign"></i>
+          </span>
+          <input
+            type="text"
+            name="purchase"
+            maxlength="40"
+            placeholder="Price of buy"
+            class="form-control"
+            required
+            {%
+            block
+            value_purchase
+            %}
+            {%
+            endblock
+            value_purchase
+            %}
+          />
+        </div>
+        <div class="input-group mb-3">
+          <span class="slide-label btn border-secondary bg-light">
+            <i class="fas fa-hand-holding-usd"></i>
+          </span>
+          <input
+            type="text"
+            name="sale"
+            placeholder="Price of sale"
+            maxlength="40"
+            class="form-control"
+            required
+            {%
+            block
+            value_sale
+            %}
+            {%
+            endblock
+            value_sale
+            %}
+          />
+        </div>
+        <div class="input-group mb-3">
+          <span class="slide-label btn border-secondary bg-light">
+            <i class="fab fa-buffer"></i>
+          </span>
+          <input
+            type="text"
+            name="qty"
+            placeholder="Quantity"
+            maxlength="40"
+            class="form-control"
+            required
+            {%
+            block
+            value_qty
+            %}
+            {%
+            endblock
+            value_qty
+            %}
+          />
+        </div>
+        <div class="input-group mb-3">
+          <label for="gender">
+            <span
+              class="slide-label btn border-secondary bg-light"
+              style="border-radius: 4px 8px 8px 4px"
+              ><i class="fas fa-child"></i
+            ></span>
+          </label>
+          <select class="form-control" name="gender">
+            {% block option %}
+            <option value="" hidden>Select the gender</option>
+            {% endblock option %}
+            <option disabled></option>
+            <option>F</option>
+            <option>M</option>
+            <option>U</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <textarea
+            name="note"
+            rows="7"
+            class="form-control"
+            maxlength="1000"
+            placeholder="Description optional....."
+          >
+                            
+                            {% block note %}
+                                
+                            {% endblock note %}
+                                
+                        </textarea
+          >
+        </div>
+        <div class="mt-4" style="width: 100%">
+          <button type="submit" class="btn btn-secondary mb-3">
+            {% block btn-action %}
+            <i class="fas fa-plus">&nbsp;&nbsp;Add Product</i>
+            {% endblock btn-action %}
+          </button>
+          <a
+            href="{% url 'home' %}"
+            class="btn btn-outline-dark mb-3 ms-2"
+            style="width: 50px"
+            title="Back"
+          >
+            <i class="fas fa-chevron-left"></i>
+          </a>
+          <button
+            type="reset"
+            class="btn btn-outline-dark mb-3 ms-2"
+            style="width: 50px"
+            title="Reset"
+          >
+            <i class="fas fa-sync-alt"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock content %}
